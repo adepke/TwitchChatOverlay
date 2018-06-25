@@ -27,7 +27,16 @@ namespace TwitchChatOverlay
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            Overlay OverlayHandle = new Overlay();
+            OverlayHandle.Foreground = new SolidColorBrush(ChatColorPicker.SelectedColor ?? default(Color));
+            OverlayHandle.TwitchChat.FontSize = Double.Parse(ChatSizeBox.Text);
+            OverlayHandle.WindowStartupLocation = WindowStartupLocation.Manual;
+            OverlayHandle.Left = Double.Parse(XBox.Text);
+            OverlayHandle.Top = Double.Parse(YBox.Text);
+            OverlayHandle.Width = Double.Parse(WidthBox.Text);
+            OverlayHandle.Height = Double.Parse(HeightBox.Text);
+            OverlayHandle.Show();
+            this.Hide();
         }
     }
 }

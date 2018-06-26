@@ -4,23 +4,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Xml;
+using System.IO;
 
 namespace TwitchChatOverlay
 {
-    class TwitchOverlayBot
+    internal class TwitchOverlayBot : System.Windows.Application
     {
+        private static readonly AutoResetEvent Signal = new AutoResetEvent(true);
+
+        [STAThread]
         public static void Main(string[] Args)
         {
-            Thread WindowThread = new Thread(() =>
-            {
-                MainWindow Window = new MainWindow();
-                Window.Show();
-            });
+            TwitchChatOverlay.App App = new TwitchChatOverlay.App();
+            App.InitializeComponent();
+            App.Run();
+        }
 
-            WindowThread.Start();
+        public static void Boot(string Channel)
+        {
+            StreamReader ConfigReader = new StreamReader(new FileStream(
+#if DEBUG
+            @"../../Secret.config"
+#else
+            @"Secret.config"
+#endif
+            , FileMode.Open, FileAccess.Read));
+
+            XmlDocument SecretXml = new XmlDocument();
+            string SecretXmlRaw = ConfigReader.ReadToEnd();
+            ConfigReader.Close();
+
+            SecretXml.LoadXml(SecretXmlRaw);
+
+            string Username = "";
+            string OAuthToken = "";
+
+            foreach (XmlNode Child in SecretXml.ChildNodes)
+            {
+                if (Child.Name.Equals("configuration"))
+                {
+                    foreach (XmlNode Node in Child.ChildNodes)
+                    {
+                        if (Node.Name.Equals("account"))
+                        {
+                            Username = Node.Attributes["username"].Value;
+                            OAuthToken = Node.Attributes["oauthtoken"].Value;
+                        }
+                    }
+                }
+            }
+
+            Signal.WaitOne();
 
             IRC IRCClient = new IRC();
-            IRCClient.Boot("irc.twitch.tv", 6667);
+            IRCClient.Boot("irc.twitch.tv", 6667, Username, OAuthToken);
+            IRCClient.JoinRoom(Channel);
+
+            IRCClient.SendMessage("/me Overlay IRC Warmup");
         }
     }
 }

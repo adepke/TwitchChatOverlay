@@ -35,6 +35,9 @@ namespace TwitchChatOverlay
             OverlayHandle.Top = Double.Parse(YBox.Text);
             OverlayHandle.Width = Double.Parse(WidthBox.Text);
             OverlayHandle.Height = Double.Parse(HeightBox.Text);
+
+            TwitchOverlayBot.Boot(ChannelBox.Text);
+
             OverlayHandle.Show();
             this.Hide();
         }

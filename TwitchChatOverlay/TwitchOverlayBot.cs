@@ -11,8 +11,6 @@ namespace TwitchChatOverlay
 {
     internal class TwitchOverlayBot : System.Windows.Application
     {
-        private static readonly AutoResetEvent Signal = new AutoResetEvent(true);
-
         [STAThread]
         public static void Main(string[] Args)
         {
@@ -54,8 +52,6 @@ namespace TwitchChatOverlay
                     }
                 }
             }
-
-            Signal.WaitOne();
 
             IRC IRCClient = new IRC();
             IRCClient.Boot("irc.twitch.tv", 6667, Username, OAuthToken);

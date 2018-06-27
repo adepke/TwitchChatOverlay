@@ -20,13 +20,15 @@ namespace TwitchChatOverlay
     public partial class Overlay : Window
     {
         public double ChatFontSize;
+        public bool ChatBold;
+        public Thickness OutlineThickness;
 
         public Overlay()
         {
             InitializeComponent();
         }
 
-        public void AddMessage(string FormattedMessage, SolidColorBrush Brush)
+        public void AddMessage(string FormattedMessage, SolidColorBrush Brush, SolidColorBrush OutlineBrush)
         {
             int Index = (int)(Height * 0.3) / (int)ChatFontSize;
 
@@ -35,12 +37,35 @@ namespace TwitchChatOverlay
                 ChatStack.Children.RemoveAt(0);
             }
 
-            ChatStack.Children.Add(new Label
+            Border NewMessage = new Border();
+            NewMessage.Child = new TextBlock();
+
+            if (ChatBold)
             {
-                Content = FormattedMessage,
-                FontSize = ChatFontSize,
-                Foreground = Brush,
-            });
+                ChatStack.Children.Add(new Border
+                {
+                    BorderBrush = OutlineBrush,
+                    BorderThickness = OutlineThickness,
+                    Child = new TextBlock
+                    {
+                        Text = FormattedMessage,
+                        FontSize = ChatFontSize,
+                        Foreground = Brush,
+                        TextWrapping = TextWrapping.WrapWithOverflow,
+                    }
+                });
+            }
+
+            else
+            {
+                ChatStack.Children.Add(new TextBlock
+                {
+                    Text = FormattedMessage,
+                    FontSize = ChatFontSize,
+                    Foreground = Brush,
+                    TextWrapping = TextWrapping.WrapWithOverflow,
+                });
+            }
         }
     }
 }

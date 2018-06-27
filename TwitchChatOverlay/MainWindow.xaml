@@ -6,21 +6,24 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:TwitchChatOverlay"
         mc:Ignorable="d"
-        Title="Twitch Chat Overlay Builder" Height="325" Width="400" ResizeMode="NoResize" MinWidth="429" MinHeight="235">
+        Title="Twitch Chat Overlay Builder" Height="333" Width="429" ResizeMode="NoResize" MinWidth="429" MinHeight="333">
     <Grid Margin="0,0,1,0">
         <Label Content="Twitch Chat Overlay Builder" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="52" RenderTransformOrigin="0.5,0.5" FontSize="25" FontWeight="Bold"/>
         <Label Content="Channel:" HorizontalAlignment="Left" Margin="15,67,0,0" FontSize="17" Height="33" VerticalAlignment="Top"/>
-        <TextBox x:Name="ChannelBox" Margin="90,72,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="205" Text="#"/>
-        <Label Content="Chat Color:" HorizontalAlignment="Left" Margin="15,102,0,0" FontSize="17" Height="33" VerticalAlignment="Top"/>
-        <xctk:ColorPicker x:Name="ChatColorPicker" HorizontalAlignment="Left" Width="150" Height="30" Margin="113,105,0,86" VerticalAlignment="Top" DisplayColorAndName="False"></xctk:ColorPicker>
-        <Label Content="Chat Size:" HorizontalAlignment="Left" Margin="15,137,0,0" FontSize="17" Height="33" VerticalAlignment="Top"/>
-        <TextBox x:Name="ChatSizeBox" Margin="98,142,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" Text="15" HorizontalAlignment="Left" Width="42"/>
-        <Label Content="Overlay X, Y, Width, Height:" HorizontalAlignment="Left" Margin="15,172,0,0" FontSize="17" Height="33" VerticalAlignment="Top"/>
-        <TextBox x:Name="XBox" Margin="230,177,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" Text="10"/>
-        <TextBox x:Name="YBox" Margin="275,177,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" Text="10"/>
-        <TextBox x:Name="WidthBox" Margin="320,177,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" Text="300"/>
-        <TextBox x:Name="HeightBox" Margin="365,177,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" Text="400"/>
-        <Button Content="Start" HorizontalAlignment="Center" Margin="0,231,0,0" VerticalAlignment="Top" Width="85" FontSize="16" Click="Button_Click"/>
-        <Label Content="© 2018 Andrew Depke" HorizontalAlignment="Center" Margin="0,261,0,0" Width="139"/>
+        <TextBox x:Name="ChannelBox" Margin="90,72,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="205"/>
+        <Label Content="Chat Color:" HorizontalAlignment="Left" Margin="15,105,0,0" FontSize="17" Height="33" VerticalAlignment="Top"/>
+        <xctk:ColorPicker x:Name="ChatColorPicker" HorizontalAlignment="Left" Width="150" Height="30" Margin="175,105,0,0" VerticalAlignment="Top" DisplayColorAndName="False"></xctk:ColorPicker>
+        <Label Content="Chat Outline Color:" HorizontalAlignment="Left" Margin="15,137,0,0" FontSize="17" Height="33" VerticalAlignment="Top"/>
+        <xctk:ColorPicker x:Name="ChatOutlineColorPicker" HorizontalAlignment="Left" Width="150" Height="30" Margin="175,137,0,0" VerticalAlignment="Top" DisplayColorAndName="False"></xctk:ColorPicker>
+        <Label Content="Chat Size:" HorizontalAlignment="Left" Margin="15,169,0,0" FontSize="17" Height="33" VerticalAlignment="Top"/>
+        <TextBox x:Name="ChatSizeBox" Margin="98,174,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" Text="15" HorizontalAlignment="Left" Width="42"/>
+        <RadioButton x:Name="BoldButton" Content="Bold" HorizontalAlignment="Left" Margin="145,182,0,0" VerticalAlignment="Top"/>
+        <Label Content="Overlay X, Y, Width, Height:" HorizontalAlignment="Left" Margin="15,202,0,0" FontSize="17" Height="33" VerticalAlignment="Top"/>
+        <TextBox x:Name="XBox" Margin="230,207,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" Text="10"/>
+        <TextBox x:Name="YBox" Margin="275,207,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" Text="10"/>
+        <TextBox x:Name="WidthBox" Margin="320,207,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" Text="300"/>
+        <TextBox x:Name="HeightBox" Margin="365,207,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" Text="400"/>
+        <Button Content="Start" HorizontalAlignment="Center" Margin="167,245,170,0" VerticalAlignment="Top" Width="85" FontSize="16" Click="Button_Click"/>
+        <Label Content="© 2018 Andrew Depke" HorizontalAlignment="Center" Margin="140,275,143,-14" Width="139"/>
     </Grid>
 </Window>

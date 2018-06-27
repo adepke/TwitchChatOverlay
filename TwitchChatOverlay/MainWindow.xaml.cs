@@ -30,6 +30,7 @@ namespace TwitchChatOverlay
         public List<string> IgnoredUserList;
 
         public SolidColorBrush Brush;
+        public SolidColorBrush OutlineBrush;
 
         public MainWindow()
         {
@@ -59,7 +60,7 @@ namespace TwitchChatOverlay
                             }
                         }
 
-                        OverlayHandle.AddMessage(User + ": " + Message, Brush);
+                        OverlayHandle.AddMessage(User + ": " + Message, Brush, OutlineBrush);
                     }
                 }
             }
@@ -68,7 +69,9 @@ namespace TwitchChatOverlay
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Brush = new SolidColorBrush(ChatColorPicker.SelectedColor ?? default(Color));
+            OutlineBrush = new SolidColorBrush(ChatOutlineColorPicker.SelectedColor ?? default(Color));
             OverlayHandle.ChatFontSize = Double.Parse(ChatSizeBox.Text);
+            OverlayHandle.ChatBold = BoldButton.IsChecked ?? false;
             OverlayHandle.WindowStartupLocation = WindowStartupLocation.Manual;
             OverlayHandle.Left = Double.Parse(XBox.Text);
             OverlayHandle.Top = Double.Parse(YBox.Text);

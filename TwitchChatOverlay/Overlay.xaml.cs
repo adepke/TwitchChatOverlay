@@ -76,8 +76,7 @@ namespace TwitchChatOverlay
 
         private void Application_Exitting(object sender, CancelEventArgs e)
         {
-            // Fast Failing is Probably Not the Best Solution to This, Substitute This With Bot Thread Abort.
-            Environment.FailFast("Shutdown");
+            Environment.Exit(0);
         }
     }
 }

@@ -19,9 +19,29 @@ namespace TwitchChatOverlay
     /// </summary>
     public partial class Overlay : Window
     {
+        public double ChatHeight;
+        public double ChatFontSize;
+
         public Overlay()
         {
             InitializeComponent();
+        }
+
+        public void AddMessage(string FormattedMessage, SolidColorBrush Brush)
+        {
+            int Index = (int)(Height * 0.3) / (int)FontSize;
+
+            if (ChatStack.Children.Count > Index)
+            {
+                ChatStack.Children.RemoveAt(0);
+            }
+
+            ChatStack.Children.Add(new Label
+            {
+                Content = FormattedMessage,
+                FontSize = ChatFontSize,
+                Foreground = Brush,
+            });
         }
     }
 }

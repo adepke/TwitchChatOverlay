@@ -10,6 +10,6 @@
         <SolidColorBrush Opacity="0.0" Color="White"/>
     </Window.Background>
     <Grid>
-        <TextBlock x:Name="TwitchChat" Margin="0,0,0,0" TextWrapping="Wrap" Text="Sample Text"/>
+        <StackPanel x:Name="ChatStack" Margin="0,0,0,0"/>
     </Grid>
 </Window>

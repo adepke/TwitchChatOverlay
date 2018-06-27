@@ -84,7 +84,7 @@ namespace TwitchChatOverlay
             MessageQueue = new ConcurrentQueue<string>();
             IgnoredUserList = new List<string>();
 
-            string Channel = ChannelBox.Text;
+            string Channel = ChannelBox.Text.ToLower();
 
             EventWaitHandle BootFinishedLock = new EventWaitHandle(false, EventResetMode.ManualReset);
 

@@ -48,22 +48,25 @@ namespace TwitchChatOverlay
 
                 if (MessageQueue.TryDequeue(out NewMessage))
                 {
-                    if (NewMessage.Contains("PRIVMSG"))
+                    if (NewMessage != null)
                     {
-                        string User = NewMessage.Substring(1, NewMessage.IndexOf('!') - 1);
-                        string Message = NewMessage.Substring(NewMessage.LastIndexOf(':') + 1);
-
-                        foreach (string IgnoredUser in IgnoredUserList)
+                        if (NewMessage.Contains("PRIVMSG"))
                         {
-                            if (User.Equals(IgnoredUser, StringComparison.CurrentCultureIgnoreCase))
+                            string User = NewMessage.Substring(1, NewMessage.IndexOf('!') - 1);
+                            string Message = NewMessage.Substring(NewMessage.LastIndexOf(':') + 1);
+
+                            foreach (string IgnoredUser in IgnoredUserList)
                             {
-                                // We Are Ignoring This User, Return Out.
+                                if (User.Equals(IgnoredUser, StringComparison.CurrentCultureIgnoreCase))
+                                {
+                                    // We Are Ignoring This User, Return Out.
 
-                                return;
+                                    return;
+                                }
                             }
-                        }
 
-                        OverlayHandle.AddMessage(User + ": " + Message, Brush, OutlineBrush);
+                            OverlayHandle.AddMessage(User + ": " + Message, Brush, OutlineBrush);
+                        }
                     }
                 }
             }
@@ -75,7 +78,7 @@ namespace TwitchChatOverlay
             OutlineBrush = new SolidColorBrush(ChatOutlineColorPicker.SelectedColor ?? default(Color));
             OverlayHandle.ChatFontSize = Double.Parse(ChatSizeBox.Text);
             OverlayHandle.ChatBold = BoldButton.IsChecked ?? false;
-            OverlayHandle.OutlineThickness = new Thickness(Double.Parse(ChatOutlineThicknessBox.Text));
+            OverlayHandle.OutlineThickness = Double.Parse(ChatOutlineThicknessBox.Text);
             OverlayHandle.WindowStartupLocation = WindowStartupLocation.Manual;
             OverlayHandle.Left = Double.Parse(XBox.Text);
             OverlayHandle.Top = Double.Parse(YBox.Text);

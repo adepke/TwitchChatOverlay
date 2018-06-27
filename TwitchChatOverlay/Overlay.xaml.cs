@@ -22,7 +22,7 @@ namespace TwitchChatOverlay
     {
         public double ChatFontSize;
         public bool ChatBold;
-        public Thickness OutlineThickness;
+        public double OutlineThickness;
 
         public Overlay()
         {
@@ -38,21 +38,15 @@ namespace TwitchChatOverlay
                 ChatStack.Children.RemoveAt(0);
             }
 
-            Border NewMessage = new Border();
-            NewMessage.Child = new TextBlock();
-
-            ChatStack.Children.Add(new Border
+            ChatStack.Children.Add(new OutlinedTextBlock
             {
-                BorderBrush = OutlineBrush,
-                BorderThickness = OutlineThickness,
-                Child = new TextBlock
-                {
-                    Text = FormattedMessage,
-                    FontSize = ChatFontSize,
-                    Foreground = Brush,
-                    TextWrapping = TextWrapping.WrapWithOverflow,
-                    FontWeight = ChatBold ? FontWeights.Bold : FontWeights.Regular,
-                }
+                Text = FormattedMessage,
+                FontSize = ChatFontSize,
+                Fill = Brush,
+                Stroke = OutlineBrush,
+                StrokeThickness = OutlineThickness,
+                TextWrapping = TextWrapping.WrapWithOverflow,
+                FontWeight = ChatBold ? FontWeights.Bold : FontWeights.Regular,
             });
         }
 

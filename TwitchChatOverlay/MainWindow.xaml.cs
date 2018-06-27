@@ -75,6 +75,7 @@ namespace TwitchChatOverlay
             OutlineBrush = new SolidColorBrush(ChatOutlineColorPicker.SelectedColor ?? default(Color));
             OverlayHandle.ChatFontSize = Double.Parse(ChatSizeBox.Text);
             OverlayHandle.ChatBold = BoldButton.IsChecked ?? false;
+            OverlayHandle.OutlineThickness = new Thickness(Double.Parse(ChatOutlineThicknessBox.Text));
             OverlayHandle.WindowStartupLocation = WindowStartupLocation.Manual;
             OverlayHandle.Left = Double.Parse(XBox.Text);
             OverlayHandle.Top = Double.Parse(YBox.Text);

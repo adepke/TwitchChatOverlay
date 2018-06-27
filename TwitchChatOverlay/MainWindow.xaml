@@ -19,6 +19,8 @@
         <Label Content="Chat Size:" HorizontalAlignment="Left" Margin="15,169,0,0" FontSize="17" Height="33" VerticalAlignment="Top"/>
         <TextBox x:Name="ChatSizeBox" Margin="98,174,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" Text="15" HorizontalAlignment="Left" Width="42"/>
         <RadioButton x:Name="BoldButton" Content="Bold" HorizontalAlignment="Left" Margin="145,182,0,0" VerticalAlignment="Top"/>
+        <Label Content="Outline Thickness:" HorizontalAlignment="Left" Margin="200,172,0,0" FontSize="17" Height="33" VerticalAlignment="Top"/>
+        <TextBox x:Name="ChatOutlineThicknessBox" Margin="345,177,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" Text="1" HorizontalAlignment="Left" Width="42"/>
         <Label Content="Overlay X, Y, Width, Height:" HorizontalAlignment="Left" Margin="15,202,0,0" FontSize="17" Height="33" VerticalAlignment="Top"/>
         <TextBox x:Name="XBox" Margin="230,207,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" Text="10"/>
         <TextBox x:Name="YBox" Margin="275,207,0,0" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" Text="10"/>

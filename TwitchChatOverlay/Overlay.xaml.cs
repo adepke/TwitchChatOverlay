@@ -59,19 +59,24 @@ namespace TwitchChatOverlay
 
             else
             {
-                ChatStack.Children.Add(new TextBlock
+                ChatStack.Children.Add(new Border
                 {
-                    Text = FormattedMessage,
-                    FontSize = ChatFontSize,
-                    Foreground = Brush,
-                    TextWrapping = TextWrapping.WrapWithOverflow,
+                    BorderBrush = OutlineBrush,
+                    BorderThickness = OutlineThickness,
+                    Child = new TextBlock
+                    {
+                        Text = FormattedMessage,
+                        FontSize = ChatFontSize,
+                        Foreground = Brush,
+                        TextWrapping = TextWrapping.WrapWithOverflow,
+                    }
                 });
             }
         }
 
         private void Application_Exitting(object sender, CancelEventArgs e)
         {
-            // Fast Failing is Probably Not the Best Solution to This, Substitute This With Bot Thread Abort and Natural Cleanup.
+            // Fast Failing is Probably Not the Best Solution to This, Substitute This With Bot Thread Abort.
             Environment.FailFast("Shutdown");
         }
     }

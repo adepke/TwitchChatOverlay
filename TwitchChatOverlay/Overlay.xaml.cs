@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,6 +67,12 @@ namespace TwitchChatOverlay
                     TextWrapping = TextWrapping.WrapWithOverflow,
                 });
             }
+        }
+
+        private void Application_Exitting(object sender, CancelEventArgs e)
+        {
+            // Fast Failing is Probably Not the Best Solution to This, Substitute This With Bot Thread Abort and Natural Cleanup.
+            Environment.FailFast("Shutdown");
         }
     }
 }

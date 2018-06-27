@@ -16,6 +16,7 @@ using System.Threading;
 using System.Collections.Concurrent;
 using System.Timers;
 using System.Windows.Threading;
+using System.ComponentModel;
 
 namespace TwitchChatOverlay
 {
@@ -24,6 +25,8 @@ namespace TwitchChatOverlay
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Thread IRCThread;
+
         private Overlay OverlayHandle = new Overlay();
 
         public ConcurrentQueue<string> MessageQueue;
@@ -88,7 +91,7 @@ namespace TwitchChatOverlay
 
             EventWaitHandle BootFinishedLock = new EventWaitHandle(false, EventResetMode.ManualReset);
 
-            Thread IRCThread = new Thread(() =>
+            IRCThread = new Thread(() =>
             {
                 Bot BotHandle = new Bot();
                 BotHandle.Boot(ref MessageQueue, ref IgnoredUserList, Channel, ref BootFinishedLock);
@@ -102,6 +105,14 @@ namespace TwitchChatOverlay
             ProcessMessagesTimer.Interval = new TimeSpan(0, 0, 0, 0, 15);
             ProcessMessagesTimer.Tick += ProcessMessages;
             ProcessMessagesTimer.IsEnabled = true;
+        }
+
+        private void Application_Exitting(object sender, CancelEventArgs e)
+        {
+            // Fast Failing is Probably Not the Best Solution to This, Substitute This With Bot Thread Abort and Natural Cleanup.
+            //Environment.FailFast("Shutdown");
+
+            IRCThread.Abort();
         }
     }
 }

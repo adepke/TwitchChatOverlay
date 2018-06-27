@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TwitchChatOverlay"
         mc:Ignorable="d"
-        Title="Twitch Chat Overlay" Height="450" Width="800" MinWidth="150" MinHeight="200" Topmost="True" Foreground="White" AllowsTransparency="True" WindowStyle="None">
+        Title="Twitch Chat Overlay" Height="450" Width="800" MinWidth="150" MinHeight="200" Topmost="True" Foreground="White" AllowsTransparency="True" WindowStyle="None"
+        Closing="Application_Exitting">
     <Window.Background>
         <SolidColorBrush Opacity="0.0" Color="White"/>
     </Window.Background>

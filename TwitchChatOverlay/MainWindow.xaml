@@ -6,7 +6,8 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:TwitchChatOverlay"
         mc:Ignorable="d"
-        Title="Twitch Chat Overlay Builder" Height="333" Width="429" ResizeMode="NoResize" MinWidth="429" MinHeight="333">
+        Title="Twitch Chat Overlay Builder" Height="333" Width="429" ResizeMode="NoResize" MinWidth="429" MinHeight="333"
+        Closing="Application_Exitting">
     <Grid Margin="0,0,1,0">
         <Label Content="Twitch Chat Overlay Builder" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="52" RenderTransformOrigin="0.5,0.5" FontSize="25" FontWeight="Bold"/>
         <Label Content="Channel:" HorizontalAlignment="Left" Margin="15,67,0,0" FontSize="17" Height="33" VerticalAlignment="Top"/>

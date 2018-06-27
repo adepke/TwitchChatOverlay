@@ -41,37 +41,19 @@ namespace TwitchChatOverlay
             Border NewMessage = new Border();
             NewMessage.Child = new TextBlock();
 
-            if (ChatBold)
+            ChatStack.Children.Add(new Border
             {
-                ChatStack.Children.Add(new Border
+                BorderBrush = OutlineBrush,
+                BorderThickness = OutlineThickness,
+                Child = new TextBlock
                 {
-                    BorderBrush = OutlineBrush,
-                    BorderThickness = OutlineThickness,
-                    Child = new TextBlock
-                    {
-                        Text = FormattedMessage,
-                        FontSize = ChatFontSize,
-                        Foreground = Brush,
-                        TextWrapping = TextWrapping.WrapWithOverflow,
-                    }
-                });
-            }
-
-            else
-            {
-                ChatStack.Children.Add(new Border
-                {
-                    BorderBrush = OutlineBrush,
-                    BorderThickness = OutlineThickness,
-                    Child = new TextBlock
-                    {
-                        Text = FormattedMessage,
-                        FontSize = ChatFontSize,
-                        Foreground = Brush,
-                        TextWrapping = TextWrapping.WrapWithOverflow,
-                    }
-                });
-            }
+                    Text = FormattedMessage,
+                    FontSize = ChatFontSize,
+                    Foreground = Brush,
+                    TextWrapping = TextWrapping.WrapWithOverflow,
+                    FontWeight = ChatBold ? FontWeights.Bold : FontWeights.Regular,
+                }
+            });
         }
 
         private void Application_Exitting(object sender, CancelEventArgs e)

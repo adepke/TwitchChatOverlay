@@ -31,14 +31,7 @@ namespace TwitchChatOverlay
 
         public void AddMessage(string FormattedMessage, SolidColorBrush Brush, SolidColorBrush OutlineBrush)
         {
-            int Index = (int)(Height * 0.3) / (int)ChatFontSize;
-
-            if (ChatStack.Children.Count > Index)
-            {
-                ChatStack.Children.RemoveAt(0);
-            }
-
-            ChatStack.Children.Add(new OutlinedTextBlock
+            var NewMessage = new OutlinedTextBlock
             {
                 Text = FormattedMessage,
                 FontSize = ChatFontSize,
@@ -47,7 +40,42 @@ namespace TwitchChatOverlay
                 StrokeThickness = OutlineThickness,
                 TextWrapping = TextWrapping.WrapWithOverflow,
                 FontWeight = ChatBold ? FontWeights.Bold : FontWeights.Regular,
-            });
+            };
+
+            NewMessage.OwnerOverlay = this;
+
+            ChatStack.Children.Add(NewMessage);
+        }
+
+        public void TrimChatStack()
+        {
+            while (true)
+            {
+                if (ChatStack.Children.Count > 1)
+                {
+                    double StackHeight = 0d;
+
+                    foreach (UIElement Element in ChatStack.Children)
+                    {
+                        StackHeight += (Element as OutlinedTextBlock).ActualHeight;
+                    }
+
+                    if (StackHeight > Height)
+                    {
+                        ChatStack.Children.RemoveAt(0);  // Stack Too High, Remove the Top Message and Recheck Height.
+                    }
+
+                    else
+                    {
+                        break;  // Message Stack Fits on Screen, Break.
+                    }
+                }
+
+                else
+                {
+                    break;  // Only 1 Message in the Stack, Break.
+                }
+            }
         }
 
         private void Application_Exitting(object sender, CancelEventArgs e)

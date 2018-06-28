@@ -1,5 +1,6 @@
 ﻿/*
  * Credit: Javier G.
+ * Modified by Andrew Depke
  */
 
 using System;
@@ -13,6 +14,8 @@ using System.Windows.Media;
 [ContentProperty("Text")]
 public class OutlinedTextBlock : FrameworkElement
 {
+    public TwitchChatOverlay.Overlay OwnerOverlay;
+
     private void UpdatePen()
     {
         _Pen = new Pen(Stroke, StrokeThickness)
@@ -194,6 +197,8 @@ public class OutlinedTextBlock : FrameworkElement
 
         drawingContext.DrawGeometry(null, _Pen, _TextGeometry);
         drawingContext.DrawGeometry(Fill, null, _TextGeometry);
+
+        OwnerOverlay.TrimChatStack();
     }
 
     protected override Size MeasureOverride(Size availableSize)

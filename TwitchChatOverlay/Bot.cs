@@ -80,13 +80,19 @@ namespace TwitchChatOverlay
             IRCClient.Boot("irc.twitch.tv", 6667, Username, OAuthToken);
             IRCClient.JoinRoom(Channel);
 
-            IRCClient.SendMessage("/me Overlay IRC Warmup");
-
             while (true)
             {
                 string Message = IRCClient.ReadMessage();
 
-                Queue.Enqueue(Message);
+                if (Message.Equals("PING :tmi.twitch.tv"))
+                {
+                    IRCClient.SendToIRC("PONG :tmi.twitch.tv");
+                }
+
+                else
+                {
+                    Queue.Enqueue(Message);
+                }
             }
         }
     }

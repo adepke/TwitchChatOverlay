@@ -38,6 +38,43 @@ namespace TwitchChatOverlay
         public MainWindow()
         {
             InitializeComponent();
+
+            BuildPreview();
+        }
+
+        private void BuildPreview()
+        {
+            double CenterPoint = Canvas.GetLeft(Screen) + Screen.Width / 2d;
+
+            double Ratio = WpfScreenHelper.Screen.PrimaryScreen.Bounds.Width / WpfScreenHelper.Screen.PrimaryScreen.Bounds.Height;
+
+            Screen.Width = Screen.Height * Ratio;
+            Canvas.SetLeft(Screen, CenterPoint - Screen.Width / 2d);
+
+            var OverlayPreviewBindX = new Binding("Text");
+            OverlayPreviewBindX.Source = XBox;
+            var OverlayPreviewBindY = new Binding("Text");
+            OverlayPreviewBindY.Source = YBox;
+            var OverlayPreviewBindWidth = new Binding("Text");
+            OverlayPreviewBindWidth.Source = WidthBox;
+            var OverlayPreviewBindHeight = new Binding("Text");
+            OverlayPreviewBindHeight.Source = HeightBox;
+
+            var _OverlayPreview = new OverlayPreview();
+            BaseCanvas.Children.Add(_OverlayPreview);
+            BaseCanvas.Children.Add(_OverlayPreview.InternalRect);
+            _OverlayPreview.AnchorX = Canvas.GetLeft(Screen);
+            _OverlayPreview.AnchorY = Canvas.GetTop(Screen);
+            _OverlayPreview.Scale = Screen.Width / WpfScreenHelper.Screen.PrimaryScreen.Bounds.Width;
+            _OverlayPreview.SetBinding(OverlayPreview.AbsoluteXProperty, OverlayPreviewBindX);
+            _OverlayPreview.SetBinding(OverlayPreview.AbsoluteYProperty, OverlayPreviewBindY);
+            _OverlayPreview.SetBinding(OverlayPreview.AbsoluteWidthProperty, OverlayPreviewBindWidth);
+            _OverlayPreview.SetBinding(OverlayPreview.AbsoluteHeightProperty, OverlayPreviewBindHeight);
+            _OverlayPreview.InternalRect.Fill = new SolidColorBrush(Colors.Gray);
+
+            _OverlayPreview.UpdateInternalRect();
+
+            PreviewLabel.Content = WpfScreenHelper.Screen.PrimaryScreen.Bounds.Width.ToString() + " x " + WpfScreenHelper.Screen.PrimaryScreen.Bounds.Height.ToString() + " Preview";
         }
 
         private void ProcessMessages(object sender, EventArgs e)

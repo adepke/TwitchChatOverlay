@@ -40,6 +40,7 @@ namespace TwitchChatOverlay
                 StrokeThickness = OutlineThickness,
                 TextWrapping = TextWrapping.WrapWithOverflow,
                 FontWeight = ChatBold ? FontWeights.Bold : FontWeights.Regular,
+                IsHitTestVisible = false,
             };
 
             NewMessage.OwnerOverlay = this;

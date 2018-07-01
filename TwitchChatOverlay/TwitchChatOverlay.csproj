@@ -87,6 +87,7 @@
     <Compile Include="OverlayPreview.cs" />
     <Compile Include="ResizableThumb.cs" />
     <Compile Include="TwitchOverlayBot.cs" />
+    <Compile Include="Utils.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

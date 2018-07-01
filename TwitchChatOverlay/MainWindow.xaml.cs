@@ -17,6 +17,9 @@ using System.Collections.Concurrent;
 using System.Timers;
 using System.Windows.Threading;
 using System.ComponentModel;
+using System.Xml;
+using System.IO;
+using System.Xml.Linq;
 
 namespace TwitchChatOverlay
 {
@@ -43,6 +46,8 @@ namespace TwitchChatOverlay
             ChatOutlineColorPicker.SelectedColor = Colors.Black;
 
             BuildPreview();
+
+            TryFetchSave();
         }
 
         private void BuildPreview()
@@ -100,6 +105,129 @@ namespace TwitchChatOverlay
             TextPreview.SetBinding(OutlinedTextBlock.FontWeightProperty, TextPreviewBindBold);
         }
 
+        public void TrySave()
+        {
+            try
+            {
+                string Channel = ChannelBox.Text;
+                Color ChatColor = ChatColorPicker.SelectedColor ?? default(Color);
+                Color ChatOutlineColor = ChatOutlineColorPicker.SelectedColor ?? default(Color);
+                double ChatSize = Double.Parse(ChatSizeBox.Text);
+                bool ChatBold = BoldButton.IsChecked ?? false;
+                double ChatOutlineThickness = Double.Parse(ChatOutlineThicknessBox.Text);
+                double OverlayX = Double.Parse(XBox.Text);
+                double OverlayY = Double.Parse(YBox.Text);
+                double OverlayWidth = Double.Parse(WidthBox.Text);
+                double OverlayHeight = Double.Parse(HeightBox.Text);
+
+                using (var SaveStream = File.Open(
+#if DEBUG
+                @"../../Saved.config"
+#else
+                @"Saved.config"
+#endif
+                , FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    using (var SaveWriter = new StreamWriter(SaveStream))
+                    {
+                        var Save =
+                            new XElement("Settings",
+                                new XElement("Channel", Channel),
+                                new XElement("ChatColor", Utils.ColorToString(ChatColor)),
+                                new XElement("ChatOutlineColor", Utils.ColorToString(ChatOutlineColor)),
+                                new XElement("ChatSize", ChatSize),
+                                new XElement("ChatBold", ChatBold),
+                                new XElement("ChatOutlineThickness", ChatOutlineThickness),
+                                new XElement("OverlayX", OverlayX),
+                                new XElement("OverlayY", OverlayY),
+                                new XElement("OverlayWidth", OverlayWidth),
+                                new XElement("OverlayHeight", OverlayHeight)
+                            );
+
+                        Save.Save(SaveWriter);
+                    }
+                }
+            }
+
+            catch (Exception)
+            {
+                // Failed to Save, Catch and Don't Propagate.
+            }
+        }
+
+        public void TryFetchSave()
+        {
+            try
+            {
+                using (var SaveStream = new FileStream(
+#if DEBUG
+                @"../../Saved.config"
+#else
+                @"Saved.config"
+#endif
+                , FileMode.Open, FileAccess.Read))
+                {
+                    using (var SaveReader = new StreamReader(SaveStream))
+                    {
+                        var SaveXml = new XmlDocument();
+                        string SaveXmlRaw = SaveReader.ReadToEnd();
+
+                        SaveXml.LoadXml(SaveXmlRaw);
+
+                        foreach (XmlNode Child in SaveXml.ChildNodes)
+                        {
+                            if (Child.Name.Equals("Settings"))
+                            {
+                                foreach (XmlNode Node in Child.ChildNodes)
+                                {
+                                    switch (Node.Name)
+                                    {
+                                        case "Channel":
+                                            ChannelBox.Text = Node.FirstChild.Value;
+                                            break;
+                                        case "ChatColor":
+                                            ChatColorPicker.SelectedColor = Utils.ColorFromString(Node.FirstChild.Value);
+                                            break;
+                                        case "ChatOutlineColor":
+                                            ChatColorPicker.SelectedColor = Utils.ColorFromString(Node.FirstChild.Value);
+                                            break;
+                                        case "ChatSize":
+                                            ChatSizeBox.Text = Node.FirstChild.Value;
+                                            break;
+                                        case "ChatBold":
+                                            BoldButton.IsChecked = Boolean.Parse(Node.FirstChild.Value);
+                                            break;
+                                        case "ChatOutlineThickness":
+                                            ChatOutlineThicknessBox.Text = Node.FirstChild.Value;
+                                            break;
+                                        case "OverlayX":
+                                            XBox.Text = Node.FirstChild.Value;
+                                            break;
+                                        case "OverlayY":
+                                            YBox.Text = Node.FirstChild.Value;
+                                            break;
+                                        case "OverlayWidth":
+                                            WidthBox.Text = Node.FirstChild.Value;
+                                            break;
+                                        case "OverlayHeight":
+                                            HeightBox.Text = Node.FirstChild.Value;
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            catch (Exception)
+            {
+                // Failed to Fetch Save, Catch and Don't Propagate.
+            }
+        }
+
         private void ProcessMessages(object sender, EventArgs e)
         {
             if (MessageQueue.Count > 0)
@@ -134,6 +262,8 @@ namespace TwitchChatOverlay
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            TrySave();
+
             Brush = new SolidColorBrush(ChatColorPicker.SelectedColor ?? default(Color));
             OutlineBrush = new SolidColorBrush(ChatOutlineColorPicker.SelectedColor ?? default(Color));
             OverlayHandle.ChatFontSize = Double.Parse(ChatSizeBox.Text);

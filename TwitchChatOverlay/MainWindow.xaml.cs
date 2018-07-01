@@ -120,6 +120,15 @@ namespace TwitchChatOverlay
                 double OverlayWidth = Double.Parse(WidthBox.Text);
                 double OverlayHeight = Double.Parse(HeightBox.Text);
 
+                // Clear the Save File.
+                File.WriteAllText(
+#if DEBUG
+                @"../../Saved.config"
+#else
+                @"Saved.config"
+#endif
+                , String.Empty);
+
                 using (var SaveStream = File.Open(
 #if DEBUG
                 @"../../Saved.config"
@@ -189,7 +198,7 @@ namespace TwitchChatOverlay
                                             ChatColorPicker.SelectedColor = Utils.ColorFromString(Node.FirstChild.Value);
                                             break;
                                         case "ChatOutlineColor":
-                                            ChatColorPicker.SelectedColor = Utils.ColorFromString(Node.FirstChild.Value);
+                                            ChatOutlineColorPicker.SelectedColor = Utils.ColorFromString(Node.FirstChild.Value);
                                             break;
                                         case "ChatSize":
                                             ChatSizeBox.Text = Node.FirstChild.Value;

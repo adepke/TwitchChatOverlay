@@ -18,7 +18,7 @@
         <xctk:ColorPicker x:Name="ChatOutlineColorPicker" HorizontalAlignment="Left" Width="150" Height="30" VerticalAlignment="Top" DisplayColorAndName="False" Canvas.Left="175" Canvas.Top="115"/>
         <Label Content="Chat Size:" HorizontalAlignment="Left" FontSize="17" Height="33" VerticalAlignment="Top" Canvas.Left="15" Canvas.Top="144"/>
         <TextBox x:Name="ChatSizeBox" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" Text="18" HorizontalAlignment="Left" Width="42" Canvas.Left="98" Canvas.Top="149"/>
-        <RadioButton x:Name="BoldButton" Content="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="145" Canvas.Top="157"/>
+        <local:ToggleableRadioButton x:Name="BoldButton" Content="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="145" Canvas.Top="157"/>
         <Label Content="Outline Thickness:" HorizontalAlignment="Left" FontSize="17" Height="33" VerticalAlignment="Top" Canvas.Left="200" Canvas.Top="147"/>
         <TextBox x:Name="ChatOutlineThicknessBox" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" Text="2" HorizontalAlignment="Left" Width="42" Canvas.Left="345" Canvas.Top="152"/>
         <Label Content="Overlay X, Y, Width, Height:" HorizontalAlignment="Left" FontSize="17" Height="33" VerticalAlignment="Top" Canvas.Left="15" Canvas.Top="182"/>

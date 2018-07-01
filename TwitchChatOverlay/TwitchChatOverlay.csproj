@@ -86,6 +86,7 @@
     <Compile Include="OutlinedTextBlock.cs" />
     <Compile Include="OverlayPreview.cs" />
     <Compile Include="ResizableThumb.cs" />
+    <Compile Include="ToggleableRadioButton.cs" />
     <Compile Include="TwitchOverlayBot.cs" />
     <Compile Include="Utils.cs" />
     <Page Include="MainWindow.xaml">

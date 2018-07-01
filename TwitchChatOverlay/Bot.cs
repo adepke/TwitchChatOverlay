@@ -7,6 +7,7 @@ using System.Threading;
 using System.Xml;
 using System.IO;
 using System.Collections.Concurrent;
+using System.Windows;
 
 namespace TwitchChatOverlay
 {
@@ -44,6 +45,20 @@ namespace TwitchChatOverlay
                         }
                     }
                 }
+            }
+
+            if (String.IsNullOrEmpty(Username) || String.IsNullOrEmpty(OAuthToken))
+            {
+                MessageBox.Show("Misconfigured 'Secret.config', Exiting", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                Environment.Exit(1);
+            }
+
+            else if (OAuthToken.Length <= 6)
+            {
+                MessageBox.Show("Empty OAuth Token in 'Secret.config'. Your token can be obtained from https://twitchapps.com/tmi/. Exiting", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                Environment.Exit(1);
             }
 
             StreamReader IgnoredUserListConfigReader = new StreamReader(new FileStream(

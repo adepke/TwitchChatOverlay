@@ -28,7 +28,8 @@
         <TextBox x:Name="HeightBox" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="45" Text="400" Canvas.Left="380" Canvas.Top="185"/>
         <Button Content="Start" HorizontalAlignment="Center" VerticalAlignment="Top" Width="85" FontSize="16" Click="Button_Click" Canvas.Left="172.5" Canvas.Top="344"/>
         <Label Content="© 2018 Andrew Depke" HorizontalAlignment="Center" FontSize="14" Canvas.Left="144" Canvas.Top="374"/>
-        <Rectangle x:Name="Screen" Fill="#FFECECEC" HorizontalAlignment="Center" Height="90" Stroke="Black" VerticalAlignment="Center" Width="100" Canvas.Left="165" Canvas.Top="230"/>
-        <Label x:Name="PreviewLabel" Content="0000 x 0000 Preview" Canvas.Left="166" Canvas.Top="317" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10"/>
+        <Rectangle x:Name="Screen" Fill="#FFECECEC" HorizontalAlignment="Center" Height="90" Stroke="Black" VerticalAlignment="Center" Width="100" Canvas.Left="98" Canvas.Top="230"/>
+        <Label x:Name="PreviewLabel" Content="0000 x 0000 Preview" Canvas.Left="99" Canvas.Top="316" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10"/>
+        <local:OutlinedTextBlock x:Name="TextPreview" Text="Sample Text" Canvas.Left="261" Canvas.Top="269"/>
     </Canvas>
 </Window>

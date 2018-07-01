@@ -75,6 +75,26 @@ namespace TwitchChatOverlay
             _OverlayPreview.UpdateInternalRect();
 
             PreviewLabel.Content = WpfScreenHelper.Screen.PrimaryScreen.Bounds.Width.ToString() + " x " + WpfScreenHelper.Screen.PrimaryScreen.Bounds.Height.ToString() + " Preview";
+
+            var TextPreviewBindFill = new Binding("SelectedColor");
+            TextPreviewBindFill.Source = ChatColorPicker;
+            TextPreviewBindFill.Converter = new NullableColorSolidBrushConverter();
+            var TextPreviewBindStroke = new Binding("SelectedColor");
+            TextPreviewBindStroke.Source = ChatOutlineColorPicker;
+            TextPreviewBindStroke.Converter = new NullableColorSolidBrushConverter();
+            var TextPreviewBindSize = new Binding("Text");
+            TextPreviewBindSize.Source = ChatSizeBox;
+            var TextPreviewBindStrokeSize = new Binding("Text");
+            TextPreviewBindStrokeSize.Source = ChatOutlineThicknessBox;
+            var TextPreviewBindBold = new Binding("IsChecked");
+            TextPreviewBindBold.Source = BoldButton;
+            TextPreviewBindBold.Converter = new NullableBooleanFontWeightConverter();
+
+            TextPreview.SetBinding(OutlinedTextBlock.FillProperty, TextPreviewBindFill);
+            TextPreview.SetBinding(OutlinedTextBlock.StrokeProperty, TextPreviewBindStroke);
+            TextPreview.SetBinding(OutlinedTextBlock.FontSizeProperty, TextPreviewBindSize);
+            TextPreview.SetBinding(OutlinedTextBlock.StrokeThicknessProperty, TextPreviewBindStrokeSize);
+            TextPreview.SetBinding(OutlinedTextBlock.FontWeightProperty, TextPreviewBindBold);
         }
 
         private void ProcessMessages(object sender, EventArgs e)

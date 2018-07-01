@@ -78,7 +78,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="NullableBooleanFontWeightConverter.cs" />
     <Compile Include="Bot.cs" />
+    <Compile Include="NullableColorSolidBrushConverter.cs" />
     <Compile Include="MonitorRepresentationStrip.cs" />
     <Compile Include="MovableThumb.cs" />
     <Compile Include="OutlinedTextBlock.cs" />

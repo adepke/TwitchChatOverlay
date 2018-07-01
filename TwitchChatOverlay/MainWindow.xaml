@@ -6,10 +6,10 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:TwitchChatOverlay"
         mc:Ignorable="d"
-        Title="Twitch Chat Overlay Builder" Height="435" Width="440" ResizeMode="NoResize" MinWidth="440" MinHeight="435"
+        Title="Twitch Chat Overlay Builder" Height="435" Width="453" ResizeMode="NoResize" MinWidth="440" MinHeight="435"
         Closing="Application_Exitting">
     <Canvas x:Name="BaseCanvas" Margin="0,0,1,0">
-        <Label Content="Twitch Chat Overlay Builder" HorizontalAlignment="Center" VerticalAlignment="Top" Height="52" RenderTransformOrigin="0.5,0.5" FontSize="25" FontWeight="Bold" Canvas.Left="39"/>
+        <Label Content="Twitch Chat Overlay Builder" HorizontalAlignment="Center" VerticalAlignment="Top" Height="52" RenderTransformOrigin="0.5,0.5" FontSize="25" FontWeight="Bold" Canvas.Left="59"/>
         <Label Content="Channel:" HorizontalAlignment="Left" FontSize="17" Height="33" VerticalAlignment="Top" Canvas.Left="15" Canvas.Top="42"/>
         <TextBox x:Name="ChannelBox" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="205" Canvas.Left="90" Canvas.Top="47"/>
         <Label Content="Chat Color:" HorizontalAlignment="Left" FontSize="17" Height="33" VerticalAlignment="Top" Canvas.Left="15" Canvas.Top="80"/>
@@ -17,19 +17,20 @@
         <Label Content="Chat Outline Color:" HorizontalAlignment="Left" FontSize="17" Height="33" VerticalAlignment="Top" Canvas.Left="15" Canvas.Top="112"/>
         <xctk:ColorPicker x:Name="ChatOutlineColorPicker" HorizontalAlignment="Left" Width="150" Height="30" VerticalAlignment="Top" DisplayColorAndName="False" Canvas.Left="175" Canvas.Top="112"/>
         <Label Content="Chat Size:" HorizontalAlignment="Left" FontSize="17" Height="33" VerticalAlignment="Top" Canvas.Left="15" Canvas.Top="144"/>
-        <TextBox x:Name="ChatSizeBox" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" Text="15" HorizontalAlignment="Left" Width="42" Canvas.Left="98" Canvas.Top="149"/>
+        <TextBox x:Name="ChatSizeBox" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" Text="18" HorizontalAlignment="Left" Width="42" Canvas.Left="98" Canvas.Top="149"/>
         <RadioButton x:Name="BoldButton" Content="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="145" Canvas.Top="157"/>
         <Label Content="Outline Thickness:" HorizontalAlignment="Left" FontSize="17" Height="33" VerticalAlignment="Top" Canvas.Left="200" Canvas.Top="147"/>
-        <TextBox x:Name="ChatOutlineThicknessBox" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" Text="1" HorizontalAlignment="Left" Width="42" Canvas.Left="345" Canvas.Top="152"/>
+        <TextBox x:Name="ChatOutlineThicknessBox" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" Text="2" HorizontalAlignment="Left" Width="42" Canvas.Left="345" Canvas.Top="152"/>
         <Label Content="Overlay X, Y, Width, Height:" HorizontalAlignment="Left" FontSize="17" Height="33" VerticalAlignment="Top" Canvas.Left="15" Canvas.Top="182"/>
         <TextBox x:Name="XBox" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="45" Text="10" Canvas.Left="230" Canvas.Top="185"/>
         <TextBox x:Name="YBox" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="45" Text="10" Canvas.Left="280" Canvas.Top="185"/>
         <TextBox x:Name="WidthBox" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="45" Text="300" Canvas.Left="330" Canvas.Top="185"/>
         <TextBox x:Name="HeightBox" TextWrapping="Wrap" FontSize="17" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="45" Text="400" Canvas.Left="380" Canvas.Top="185"/>
-        <Button Content="Start" HorizontalAlignment="Center" VerticalAlignment="Top" Width="85" FontSize="16" Click="Button_Click" Canvas.Left="172.5" Canvas.Top="344"/>
-        <Label Content="© 2018 Andrew Depke" HorizontalAlignment="Center" FontSize="14" Canvas.Left="144" Canvas.Top="374"/>
+        <Button Content="Start" HorizontalAlignment="Center" VerticalAlignment="Top" Width="85" FontSize="16" Click="Button_Click" Canvas.Left="193" Canvas.Top="348"/>
+        <Label Content="© 2018 Andrew Depke" HorizontalAlignment="Center" FontSize="14" Canvas.Left="160" Canvas.Top="373"/>
         <Rectangle x:Name="Screen" Fill="#FFECECEC" HorizontalAlignment="Center" Height="90" Stroke="Black" VerticalAlignment="Center" Width="100" Canvas.Left="98" Canvas.Top="230"/>
         <Label x:Name="PreviewLabel" Content="0000 x 0000 Preview" Canvas.Left="99" Canvas.Top="316" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10"/>
-        <local:OutlinedTextBlock x:Name="TextPreview" Text="Sample Text" Canvas.Left="261" Canvas.Top="269"/>
+        <Label Content="Text Preview" Canvas.Left="270" Canvas.Top="316" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10"/>
+        <local:OutlinedTextBlock x:Name="TextPreview" Text="Sample Text" Canvas.Left="261" Canvas.Top="270"/>
     </Canvas>
 </Window>

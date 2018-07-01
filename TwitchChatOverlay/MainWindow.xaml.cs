@@ -39,6 +39,9 @@ namespace TwitchChatOverlay
         {
             InitializeComponent();
 
+            ChatColorPicker.SelectedColor = Colors.White;
+            ChatOutlineColorPicker.SelectedColor = Colors.Black;
+
             BuildPreview();
         }
 

@@ -1,7 +1,7 @@
 ﻿/*
  * Credit: Javier G.
  * Modified by Andrew Depke
- */
+*/
 
 using System;
 using System.ComponentModel;

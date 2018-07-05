@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+/*
+	Copyright (c) 2018 Andrew Depke
+*/
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
